@@ -2,7 +2,8 @@
 
 `documentation-stylist` is a `react-styleguidist`-inspired theme for [documentation.js](https://documentation.js.org) with support for TypeScript and React components
 
-![](https://raw.githubusercontent.com/mmomtchev/documentation-stylist/main/stylist.svg)
+![Style by Andre from NounProject.com](https://raw.githubusercontent.com/mmomtchev/documentation-stylist/main/stylist.svg)
+*Logo **Style by Andre** from NounProject.com*
 
 You can check an example documentation that uses it here: [rlayers](https://mmomtchev.github.io/rlayers/api)
 
