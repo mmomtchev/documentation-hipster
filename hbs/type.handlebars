@@ -1,0 +1,29 @@
+{{#switch this.type}}
+    {{#case 'TypeApplication'}}
+        {{> type this.expression}}&lt;{{#each this.applications}}{{#if @index}}, {{/if}}{{> type this}}{{/each}}&gt;
+    {{/case}}
+    {{#case 'NameExpression'}}
+        {{this.name}}
+    {{/case}}
+    {{#case 'UnionType'}}
+        {{#each this.elements}}{{#if @index}}| {{/if}}{{> type this}}{{/each}}
+    {{/case}}
+    {{#case 'ArrayType'}} [{{#each this.elements}}{{#if @index}}, {{/if}}{{> type this}}{{/each}}] {{/case}}
+    {{#case 'FunctionType'}} ({{#each this.params}}{{#if @index}}, {{/if}}{{> type this}}{{/each}}) => {{> type this.result}}
+    {{/case}}
+    {{#case 'ParameterType'}}
+        {{this.name}}{{#if this.expression}}: {{> type this.expression}}{{/if}}
+    {{/case}}
+    {{#case 'FieldType'}}
+        {{this.key}}{{#if this.value}}: {{> type this.value}}{{/if}}
+    {{/case}}
+    {{#case 'RecordType'}}
+        { {{#each this.fields}}{{#if @index}}, {{/if}}{{> type this}}{{/each}} }
+    {{/case}}
+    {{#case 'OptionalType'}}
+        {{> type this.expression}} | undefined
+    {{/case}}
+    {{#case 'VoidLiteral'}} void {{/case}}
+    {{#case 'AllLiteral'}} any {{/case}}
+    {{#case 'StringLiteralType'}}'{{this.value}}'{{/case}}
+{{/switch}}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {{config.[project-name]}}
+        {{config.[project-version]}} | Documentation
+    </title>
+    <script src="bootstrap.bundle.min.js"></script>
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="stylist.css" rel="stylesheet">
+    {{#if config.[project-description]}}
+        <meta name="description" content="{{config.[project-description]}}">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        {{#if config.[favicon]}}
+            <link href="{{config.[favicon]}}" rel="icon">
+        {{/if}}
+    {{/if}}
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="vh list" style="width: max-content;">
+                <h1 class="mt-2 mb-3">{{config.[project-name]}} {{config.[project-version]}}</h1>
+                {{> navList comments}}
+            </div>
+            <div class="vh main col">                
+                {{> mainList list=comments}}
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

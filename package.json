@@ -1,0 +1,32 @@
+{
+  "name": "documentation-stylist",
+  "version": "0.1.0",
+  "description": "documentation.js Bootstrap Theme with TypeScript and React support",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmomtchev/react-stylist.git"
+  },
+  "keywords": [
+    "react",
+    "documentation",
+    "documentation.js",
+    "jsdoc",
+    "react-styleguidist"
+  ],
+  "author": "Momtchil Momtchev <momtchil@momtchev.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmomtchev/react-stylist/issues"
+  },
+  "homepage": "https://github.com/mmomtchev/react-stylist#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "concat-stream": "^2.0.0",
+    "github-slugger": "^1.4.0",
+    "handlebars": "^4.7.7",
+    "map-stream": "^0.0.7",
+    "vinyl": "^2.2.1",
+    "vinyl-fs": "^3.0.3"
+  }
+}

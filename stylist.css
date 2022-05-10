@@ -1,0 +1,47 @@
+ul li h3 {
+    font-size: 1.5rem;
+}
+
+ul li ul li h3 {
+    font-size: 1rem;
+}
+
+ul li ul li ul li h3 {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+section h2 {
+    font-size: 2.5rem;
+}
+
+section section h2 {
+    font-size: 1.5rem;
+}
+
+section section section h2 {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+h7 {
+    font-weight: 600;
+}
+
+.vh {
+    max-height: 99vh;
+    overflow-y: scroll;
+}
+
+body {
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+}
+
+[data-bs-toggle="collapse"].collapsed .if-not-collapsed {
+    display: none;
+}
+
+[data-bs-toggle="collapse"]:not(.collapsed) .if-collapsed {
+    display: none;
+}

@@ -1,0 +1,33 @@
+<section>
+    <h2 id="{{this.slug}}">
+        {{#switch this.kind}}
+            {{#case 'note'}}{{/case}}
+            {{#case 'member'}}{{/case}}
+            {{#default}}<em>{{this.kind}}</em>{{/default}}
+        {{/switch}}
+        {{this.name}}
+    </h2>
+    {{> description this.description}}
+    {{> params this.params}}
+    {{#switch this.kind}}
+        {{#case 'class'}}
+            {{> mainList list=this.members.global name='Global members'}}
+            {{> mainList list=this.members.inner name='Inner members'}}
+            {{> mainList list=this.members.instance name='Instance members'}}
+            {{> mainList list=this.members.events name='Events'}}
+            {{> mainList list=this.members.static name='Static members'}}
+            {{> propsList this.props.members.instance}}
+        {{/case}}
+        {{#case 'interface'}}
+            {{> propsList this.members.instance}}
+        {{/case}}
+        {{#default}}
+            {{> mainList list=this.members.global name=null}}
+            {{> mainList list=this.members.inner name=null}}
+            {{> mainList list=this.members.instance name=null}}
+            {{> mainList list=this.members.events name=null}}
+            {{> mainList list=this.members.static name=null}}
+            {{> propsList this.props}}
+        {{/default}}
+    {{/switch}}
+</section>

@@ -1,0 +1,30 @@
+{{#if this}}
+<h7>Properties</h7>
+    <table class="table table-light">
+        <thead>
+            <th class="col-2">Property</th>
+            <th class="col-4">Type</th>
+            <th class="col-6">Description</th>
+        </thead>
+        <tbody>
+            {{#each this}}
+                <tr>
+                    <td>
+                        <code>{{this.name}}</code>
+                    </td>
+                    <td>
+                        <code>{{> type this.type}}</code>
+                    </td>
+                    <td>
+                        {{> description this.description}}
+                        {{#each this.tags}}
+                            {{#switch this.title}}
+                                {{#case 'default'}}<em>default</em> <code>{{this.description}}</code>{{/case}}
+                            {{/switch}}
+                        {{/each}}
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{/if}}

@@ -1,0 +1,13 @@
+<div>
+    <div class="d-flex flex-row">
+        <button class="btn m-0 me-2 p-0 align-items-center collapsed" {{#unless this.members.static}}style="visibility: hidden" {{/unless}} data-bs-target="#{{this.slug}}-collapse" data-bs-toggle="collapse">
+            <span class="if-collapsed">+</span>
+            <span class="if-not-collapsed">-</span> </button>
+        <a href="#{{this.slug}}">
+            <h3 class="m-0">{{this.name}}</h3>
+        </a>
+    </div>
+    <div class="collapse" id="{{this.slug}}-collapse">
+        {{> navList this.members.static}}
+    </div>
+</div>

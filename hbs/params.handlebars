@@ -1,0 +1,21 @@
+{{#if this}}
+<h7>Parameters</h7>
+    <table class="table table-light">
+        <thead>
+            <tr>
+            <th class="col-2">Parameter</th>
+            <th class="col-4">Type</th>
+            <th class="col-6">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this}}
+                <tr>
+                    <td><code>{{this.name}}</code></td>
+                    <td><code>{{> type this.type}}</code></td>
+                    <td><code>{{> description this.description}}</code></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{/if}}

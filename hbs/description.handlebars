@@ -1,0 +1,19 @@
+{{#each this.children}}
+    {{#switch this.type}}
+        {{#case 'root'}}
+            {{> description this}}
+        {{/case}}
+        {{#case 'paragraph'}}
+            <p>{{> description this}}</p>
+        {{/case}}
+        {{#case 'text'}}
+            {{this.value}}
+        {{/case}}
+        {{#case 'inlineCode'}}
+            <code>{{this.value}}</code>
+        {{/case}}
+        {{#case 'link'}}
+            <a href="{{this.url}}">{{> description this}}</a>
+        {{/case}}
+    {{/switch}}
+{{/each}}
