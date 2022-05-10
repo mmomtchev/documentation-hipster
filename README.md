@@ -7,6 +7,8 @@
 
 You can check an example documentation that uses it here: [rlayers](https://mmomtchev.github.io/rlayers/api)
 
+![rlayers API screenshot](https://raw.githubusercontent.com/mmomtchev/documentation-stylist/main/screenshot.png)
+
 # Usage
 
 First:
