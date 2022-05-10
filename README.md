@@ -18,8 +18,12 @@ npm i --save-dev documentation-stylist
 
 Then:
 ```
-documentation build ... --theme=node_modules/documentation-stylist
+documentation build ... --theme=node_modules/documentation-stylist/index.js
 ```
+
+# Using with React Components
+
+`documentation-stylist` supports the non-standard JSDoc tag `@propsfor` that allows to link the properties interface definition to the component.
 
 # Customization
 

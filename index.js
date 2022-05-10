@@ -58,31 +58,51 @@ module.exports = function (comments, config) {
     // remove them from the normal flow
     comments = comments.filter((m) => !(m.tags || []).map((t) => t.title).includes('propsfor'));
     // and attach them in their respective components
-    comments.forEach(propsify.bind(null, props))
+    comments.forEach(propsify.bind(null, props));
 
-    // push assets into the pipeline as well.
-    return new Promise((resolve) => {
-        vfs.src([
-            __dirname + '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
-            __dirname + '/node_modules/bootstrap/dist/css/bootstrap.min.css',
-            __dirname + '/stylist.css'
-        ], { base: __dirname })
-            .pipe(map((file, cb) => {
-                file.base = path.dirname(file.path);
-                cb(null, file);
-            }))
-            .pipe(
-                concat(function (files) {
-                    resolve(
-                        files.concat(
-                            new File({
-                                path: 'index.html',
-                                contents: Buffer.from(index({ config, comments }),
-                                    'utf8')
-                            })
-                        )
-                    );
-                })
-            );
-    });
+    const generated = index({ config, comments });
+
+    const assets = [
+        path.join(__dirname, 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'),
+        path.join(__dirname, 'node_modules/bootstrap/dist/css/bootstrap.min.css'),
+        path.join(__dirname, 'stylist.css')
+    ];
+
+    if (config.noPackage !== undefined) {
+        // documentation.js >= 14
+
+        if (!config.output) {
+            return Promise.resolve(generated);
+        }
+
+        return fs.promises.mkdir(config.output, { recursive: true })
+            .then(() => Promise.all(
+                assets.map((asset) =>
+                    fs.promises.copyFile(asset, path.join(config.output, path.basename(asset))))))
+            .then(() => fs.promises.writeFile(path.join(config.output, 'index.html'), generated, 'utf8'));
+    } else {
+        // documentation.js <= 13.x
+
+        // push assets into the pipeline as well.
+        return new Promise((resolve) => {
+            vfs.src(assets, { base: __dirname })
+                .pipe(map((file, cb) => {
+                    file.base = path.dirname(file.path);
+                    cb(null, file);
+                }))
+                .pipe(
+                    concat(function (files) {
+                        resolve(
+                            files.concat(
+                                new File({
+                                    path: 'index.html',
+                                    contents: Buffer.from(generated,
+                                        'utf8')
+                                })
+                            )
+                        );
+                    })
+                );
+        });
+    }
 }
