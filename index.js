@@ -112,8 +112,8 @@ module.exports = function (comments, config) {
     const generated = index({ config, comments });
 
     const assets = [
-        path.join(__dirname, 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'),
-        path.join(__dirname, 'node_modules/bootstrap/dist/css/bootstrap.min.css'),
+        require.resolve('bootstrap/dist/js/bootstrap.bundle.min.js'),
+        require.resolve('bootstrap/dist/css/bootstrap.min.css'),
         path.join(__dirname, 'stylist.css')
     ];
 
