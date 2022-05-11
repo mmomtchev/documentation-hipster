@@ -1,6 +1,6 @@
-<ul class="list-group">
+<ul class="{{className 'navList'}}">
     {{#each this as |c|}}
-        <li class="list-group-item border-0">
+        <li class="{{className 'navListItem'}}">
             {{> navItem c}}
         </li>
     {{/each}}

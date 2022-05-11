@@ -32,6 +32,44 @@ Handlebars.registerHelper('default', function (options) {
     }
 });
 
+Handlebars.registerHelper('hasChildren', function (value, options) {
+    const children = Object.keys(value).reduce((a, m) => a + value[m].length, 0);
+    if (children > 0) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
+const defaultClasses = {
+    container: 'container d-flex flex-row',
+    nav: 'position-sticky nav-section list',
+    main: 'main-section ps-3',
+    title: 'mt-2 mb-3 me-2',
+    examples: 'ms-4',
+    mainItem: 'me-1',
+    navItem: 'd-flex flex-row align-items-center',
+    navCollapse: 'btn btn-collapse m-0 me-2 p-0 align-items-center collapsed',
+    navList: 'list-group',
+    navListItem: 'list-group-item border-0',
+    paramsTable: 'table table-light',
+    paramsParameterHeader: 'col-2',
+    paramsTypeHeader: 'col-4',
+    paramsDescriptionHeader: 'col-6',
+    paramsParameterData: '',
+    paramsTypeData: '',
+    paramsDescriptionData: '',
+    returns: 'me-1',
+    source: 'ms-4 fs-6 fw-lighter'
+};
+let userClasses = {};
+function getClass(value) {
+    if (userClasses[value] !== undefined)
+        return userClasses[value];
+    return defaultClasses[value];
+}
+Handlebars.registerHelper('className', getClass);
+
 const crossLinks = {};
 let externalCrossLinks = () => undefined;
 let crossLinksDupeWarning = true;
@@ -52,6 +90,16 @@ Handlebars.registerHelper('crossLinkUrl', function (value) {
     if (crossLinks[value])
         return '#' + crossLinks[value];
     return value;
+});
+
+let srcLinkBase;
+
+Handlebars.registerHelper('srcLink', function (value) {
+    if (srcLinkBase && value) {
+        const rel = path.relative(process.cwd(), value.file);
+        const line = (value.loc && value.loc.start && value.loc.start.line !== undefined) ? '#L' + value.loc.start.line : '';
+        return `<a class="${getClass('source')}" href="${srcLinkBase}${rel}${line}">source</a>`;
+    }
 });
 
 
@@ -90,15 +138,16 @@ function crossify(list, block) {
 }
 
 
-module.exports = function (comments, config) {
+module.exports = function documentationStylist(comments, config) {
     const themeConfig = config['documentation-stylist'];
     if (themeConfig) {
         if (themeConfig.externalCrossLinks)
             externalCrossLinks = require(path.resolve(process.cwd(), themeConfig.externalCrossLinks));
         if (themeConfig.dumpAST)
             fs.writeFileSync(themeConfig.dumpAST, JSON.stringify(comments));
-        if (themeConfig.crossLinksDupeWarning !== undefined)
-            crossLinksDupeWarning = themeConfig.crossLinksDupeWarning;
+        crossLinksDupeWarning = themeConfig.crossLinksDupeWarning;
+        srcLinkBase = themeConfig.srcLinkBase;
+        userClasses = themeConfig.classes || {};
     }
 
     comments.forEach(slugify);
@@ -113,13 +162,16 @@ module.exports = function (comments, config) {
     // create automatic cross-links
     comments.forEach(crossify.bind(null, crossLinks));
 
-    const generated = index({ config, comments });
-
     const assets = [
         require.resolve('bootstrap/dist/js/bootstrap.bundle.min.js'),
         require.resolve('bootstrap/dist/css/bootstrap.min.css'),
-        path.join(__dirname, 'stylist.css')
+        themeConfig.css ? path.join(process.cwd(), themeConfig.css) : path.join(__dirname, 'stylist.css')
     ];
+    if (themeConfig.extraCss) {
+        assets.push(path.join(process.cwd(), themeConfig.extraCss));
+        themeConfig.extraCss = path.basename(themeConfig.extraCss);
+    }
+    const generated = index({ config, comments });
 
     if (typeof process.mainModule === 'undefined') {
         // documentation.js >= 14

@@ -1,19 +1,19 @@
 {{#if this}}
-<h7>Parameters</h7>
-    <table class="table table-light">
+    <h7>Parameters</h7>
+    <table class="{{className 'paramsTable'}}">
         <thead>
             <tr>
-            <th class="col-2">Parameter</th>
-            <th class="col-4">Type</th>
-            <th class="col-6">Description</th>
+                <th class="{{className 'paramsParameterHeader'}}">Parameter</th>
+                <th class="{{className 'paramsTypeHeader'}}">Type</th>
+                <th class="{{className 'paramsDescriptionHeader'}}">Description</th>
             </tr>
         </thead>
         <tbody>
             {{#each this}}
                 <tr>
-                    <td><code>{{this.name}}</code></td>
-                    <td><code>{{> type this.type}}</code></td>
-                    <td>{{> description this.description}}</td>
+                    <td class="{{className 'paramsParameterData'}}"><code>{{this.name}}</code></td>
+                    <td class="{{className 'paramsTypeData'}}"><code>{{> type this.type}}</code></td>
+                    <td class="{{className 'paramsDescriptionData'}}">{{> description this.description}}</td>
                 </tr>
             {{/each}}
         </tbody>

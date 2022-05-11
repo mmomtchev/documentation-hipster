@@ -3,12 +3,13 @@
         {{#switch this.kind}}
             {{#case 'note'}}{{this.name}}{{/case}}
             {{#case 'member'}}{{this.name}}{{/case}}
-            {{#case 'function'}}<em class="me-1">{{this.kind}}</em> {{this.name}}(){{/case}}
-            {{#default}}<em class="me-1">{{this.kind}}</em> {{this.name}}{{/default}}
+            {{#case 'function'}}<em class="{{className 'mainItem'}}">{{this.kind}}</em> {{this.name}}(){{/case}}
+            {{#default}}<em class="{{className 'mainItem'}}">{{this.kind}}</em> {{this.name}}{{/default}}
         {{/switch}}
         {{#if this.type}}
             : {{> type this.type}}
         {{/if}}
+        {{{srcLink this.context}}}
     </h2>
     {{> description this.description}}
     {{> params this.params}}
@@ -50,3 +51,4 @@
         {{/default}}
     {{/switch}}
 </section>
+<hr>
