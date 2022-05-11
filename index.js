@@ -34,6 +34,7 @@ Handlebars.registerHelper('default', function (options) {
 
 const crossLinks = {};
 let externalCrossLinks = () => undefined;
+let crossLinksDupeWarning = true;
 
 Handlebars.registerHelper('crossLink', function (value) {
     const ext = externalCrossLinks(value);
@@ -81,7 +82,8 @@ function crossify(list, block) {
     if (list[block.name] === undefined) {
         list[block.name] = block.slug;
     } else {
-        console.warn('Warning, duplicate names, disabling cross-links: ', block.name);
+        if (crossLinksDupeWarning)
+            console.warn('Warning, duplicate names, disabling cross-links: ', block.name);
         list[block.name] = null;
     }
     Object.keys(block.members).forEach((m) => block.members[m].forEach(crossify.bind(null, list)));
@@ -95,6 +97,8 @@ module.exports = function (comments, config) {
             externalCrossLinks = require(path.resolve(process.cwd(), themeConfig.externalCrossLinks));
         if (themeConfig.dumpAST)
             fs.writeFileSync(themeConfig.dumpAST, JSON.stringify(comments));
+        if (themeConfig.crossLinksDupeWarning !== undefined)
+            crossLinksDupeWarning = themeConfig.crossLinksDupeWarning;
     }
 
     comments.forEach(slugify);
