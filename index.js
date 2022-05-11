@@ -68,7 +68,7 @@ module.exports = function (comments, config) {
         path.join(__dirname, 'stylist.css')
     ];
 
-    if (config.noPackage !== undefined) {
+    if (typeof process.mainModule === 'undefined') {
         // documentation.js >= 14
 
         if (!config.output) {
