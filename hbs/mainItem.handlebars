@@ -1,33 +1,51 @@
 <section>
     <h2 id="{{this.slug}}">
         {{#switch this.kind}}
-            {{#case 'note'}}{{/case}}
-            {{#case 'member'}}{{/case}}
-            {{#default}}<em>{{this.kind}}</em>{{/default}}
+            {{#case 'note'}}{{this.name}}{{/case}}
+            {{#case 'member'}}{{this.name}}{{/case}}
+            {{#case 'function'}}<em class="me-1">{{this.kind}}</em> {{this.name}}(){{/case}}
+            {{#default}}<em class="me-1">{{this.kind}}</em> {{this.name}}{{/default}}
         {{/switch}}
-        {{this.name}}
+        {{#if this.type}}
+            : {{> type this.type}}
+        {{/if}}
     </h2>
     {{> description this.description}}
     {{> params this.params}}
+    {{> returns list=this.throws name='Throws'}}
+    {{> returns list=this.returns name='Returns'}}
+    {{> propsList list=this.properties name='Properties'}}
     {{#switch this.kind}}
         {{#case 'class'}}
             {{> mainList list=this.members.global name='Global members'}}
+            {{> mainList list=this.members.static name='Static members'}}
+            {{> mainList list=this.members.events name='Events'}}
             {{> mainList list=this.members.inner name='Inner members'}}
             {{> mainList list=this.members.instance name='Instance members'}}
-            {{> mainList list=this.members.events name='Events'}}
-            {{> mainList list=this.members.static name='Static members'}}
-            {{> propsList this.props.members.instance}}
+            {{> propsList list=this.props.members.instance name='Properties'}}
         {{/case}}
         {{#case 'interface'}}
-            {{> propsList this.members.instance}}
+            {{> propsList list=this.members.events name='Events'}}
+            {{> propsList list=this.members.static name='Properties'}}
+            {{> propsList list=this.members.instance name='Fields'}}
+        {{/case}}
+        {{#case 'type'}}
+            {{> propsList list=this.members.events name='Events'}}
+            {{> propsList list=this.members.static name='Properties'}}
+            {{> propsList list=this.members.instance name='Fields'}}
+        {{/case}}
+        {{#case 'typedef'}}
+            {{> propsList list=this.members.events name='Events'}}
+            {{> propsList list=this.members.static name='Properties'}}
+            {{> propsList list=this.members.instance name='Fields'}}
         {{/case}}
         {{#default}}
             {{> mainList list=this.members.global name=null}}
+            {{> mainList list=this.members.static name=null}}
+            {{> mainList list=this.members.events name=null}}
             {{> mainList list=this.members.inner name=null}}
             {{> mainList list=this.members.instance name=null}}
-            {{> mainList list=this.members.events name=null}}
-            {{> mainList list=this.members.static name=null}}
-            {{> propsList this.props}}
+            {{> propsList list=this.props.members.instance name='Properties'}}
         {{/default}}
     {{/switch}}
 </section>

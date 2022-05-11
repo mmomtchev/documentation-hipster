@@ -31,6 +31,25 @@ Handlebars.registerHelper('default', function (options) {
     }
 });
 
+const crossLinks = {};
+Handlebars.registerHelper('crossLink', function (value) {
+    if (crossLinks[value])
+        return `<a href="#${crossLinks[value]}">${value}</a>`;
+    return value;
+});
+
+Handlebars.registerHelper('crossLinkUrl', function (value) {
+    if (crossLinks[value])
+        return '#' + crossLinks[value];
+    return value;
+});
+
+
+Handlebars.registerHelper('debug', function (value, options) {
+    return JSON.stringify(value);
+});
+
+
 function slugify(block) {
     block.slug = slugger.slug(block.name);
     Object.keys(block.members).forEach((m) => block.members[m].forEach(slugify));
@@ -49,9 +68,21 @@ function propsify(props, block) {
     Object.keys(block.members).forEach((m) => block.members[m].forEach(propsify.bind(null, props)));
 }
 
+function crossify(list, block) {
+    if (list[block.name] === undefined) {
+        list[block.name] = block.slug;
+    } else {
+        console.warn('Warning, duplicate names, disabling cross-links: ', block.name);
+        list[block.name] = null;
+    }
+    Object.keys(block.members).forEach((m) => block.members[m].forEach(crossify.bind(null, list)));
+}
+
 
 module.exports = function (comments, config) {
     comments.forEach(slugify);
+
+    console.log(require('util').inspect(comments, false, Infinity, true));
 
     // find static members whose unknown tags list contains propsfor
     const props = comments.filter((m) => (m.tags || []).map((t) => t.title).includes('propsfor'));
@@ -59,6 +90,9 @@ module.exports = function (comments, config) {
     comments = comments.filter((m) => !(m.tags || []).map((t) => t.title).includes('propsfor'));
     // and attach them in their respective components
     comments.forEach(propsify.bind(null, props));
+
+    // create automatic cross-links
+    comments.forEach(crossify.bind(null, crossLinks));
 
     const generated = index({ config, comments });
 

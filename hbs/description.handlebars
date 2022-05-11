@@ -1,19 +1,27 @@
-{{#each this.children}}
-    {{#switch this.type}}
-        {{#case 'root'}}
+{{#switch this.type}}
+    {{#case 'root'}}
+        {{#each this.children}}
             {{> description this}}
-        {{/case}}
-        {{#case 'paragraph'}}
-            <p>{{> description this}}</p>
-        {{/case}}
-        {{#case 'text'}}
-            {{this.value}}
-        {{/case}}
-        {{#case 'inlineCode'}}
-            <code>{{this.value}}</code>
-        {{/case}}
-        {{#case 'link'}}
-            <a href="{{this.url}}">{{> description this}}</a>
-        {{/case}}
-    {{/switch}}
-{{/each}}
+        {{/each}}
+    {{/case}}
+    {{#case 'paragraph'}}
+        <p>
+        {{#each this.children}}
+            {{> description this}}
+        {{/each}}
+        </p>
+    {{/case}}
+    {{#case 'text'}}
+        {{this.value}}
+    {{/case}}
+    {{#case 'inlineCode'}}
+        <code>{{this.value}}</code>
+    {{/case}}
+    {{#case 'link'}}
+        <a href="{{crossLinkUrl this.url}}">
+        {{#each this.children}}
+            {{> description this}}
+        {{/each}}
+        </a>
+    {{/case}}
+{{/switch}}

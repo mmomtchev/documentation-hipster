@@ -1,5 +1,7 @@
-{{#if this}}
-<h7>Properties</h7>
+{{#if list}}
+    {{#if name}}
+        <h7>{{name}}</h7>
+    {{/if}}
     <table class="table table-light">
         <thead>
             <th class="col-2">Property</th>
@@ -7,7 +9,7 @@
             <th class="col-6">Description</th>
         </thead>
         <tbody>
-            {{#each this}}
+            {{#each list}}
                 <tr>
                     <td>
                         <code>{{this.name}}</code>
@@ -19,7 +21,7 @@
                         {{> description this.description}}
                         {{#each this.tags}}
                             {{#switch this.title}}
-                                {{#case 'default'}}<em>default</em> <code>{{this.description}}</code>{{/case}}
+                                {{#case 'default'}}<em class="me-1">default</em> <code>{{this.description}}</code>{{/case}}
                             {{/switch}}
                         {{/each}}
                     </td>
