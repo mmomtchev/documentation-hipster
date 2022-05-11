@@ -8,11 +8,11 @@ const map = require('map-stream');
 const slugger = new require('github-slugger')();
 const Handlebars = require('handlebars');
 
-const index = require('./hbs/index.handlebars');
+const index = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'hbs', 'index.handlebars'), 'utf8'), {preventIndent: true});
 for (const templ of fs.readdirSync(path.join(__dirname, 'hbs')).filter(f => f.match(/\.handlebars/))) {
-    Handlebars.registerPartial(templ.split('.')[0], require(path.join(__dirname, 'hbs', templ)));
+    const partial = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'hbs', templ), 'utf8'), {preventIndent: true});
+    Handlebars.registerPartial(templ.split('.')[0], partial);
 }
-
 Handlebars.registerHelper('switch', function (value, options) {
     this.switch_value = value;
     this.switch_break = false;
