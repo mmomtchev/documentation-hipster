@@ -3,8 +3,8 @@
         data-bs-toggle="collapse">
         <span class="font-monospace if-collapsed">+</span>
         <span class="font-monospace if-not-collapsed">-</span> </button>
-    <a href="#{{this.slug}}">
-        <h3 class="m-0">{{this.name}}</h3>
+    <a class={{className 'navLink'}} href="#{{this.slug}}">
+        <h3 class="{{className 'navText'}}">{{this.name}}</h3>
     </a>
 </div>
 <div class="collapse" id="{{this.slug}}-collapse">

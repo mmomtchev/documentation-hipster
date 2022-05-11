@@ -52,6 +52,8 @@ const defaultClasses = {
     navCollapse: 'btn btn-collapse m-0 me-2 p-0 align-items-center collapsed',
     navList: 'list-group',
     navListItem: 'list-group-item border-0',
+    navLink: 'text-decoration-none',
+    navText: 'm-0',
     paramsTable: 'table table-light',
     paramsParameterHeader: 'col-2',
     paramsTypeHeader: 'col-4',
