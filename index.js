@@ -93,11 +93,9 @@ module.exports = function (comments, config) {
     if (themeConfig) {
         if (themeConfig.externalCrossLinks)
             externalCrossLinks = require(path.resolve(process.cwd(), themeConfig.externalCrossLinks));
+        if (themeConfig.dumpAST)
+            fs.writeFileSync(themeConfig.dumpAST, JSON.stringify(comments));
     }
-
-    comments.forEach(slugify);
-
-    console.log(require('util').inspect(comments, false, Infinity, true));
 
     // find static members whose unknown tags list contains propsfor
     const props = comments.filter((m) => (m.tags || []).map((t) => t.title).includes('propsfor'));
@@ -110,8 +108,6 @@ module.exports = function (comments, config) {
     comments.forEach(crossify.bind(null, crossLinks));
 
     const generated = index({ config, comments });
-
-    console.log(config);
 
     const assets = [
         path.join(__dirname, 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'),
