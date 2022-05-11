@@ -32,7 +32,7 @@ documentation build ... --theme=node_modules/documentation-stylist/index.js
 `documentation-stylist` supports the following options in the `documentation.yml` configuration file:
 ```yml
 documentation-stylist:
-  # Disable the warning that multiple elements shared the same base name
+  # Disable the warning that multiple elements share the same base name
   # and cannot have their automatic cross links resolved
   crossLinksDupeWarning: false
   # An external function that must be the default export of the following file
@@ -41,7 +41,7 @@ documentation-stylist:
   externalCrossLinks: scripts/externalCrossLinks.js
   # If present every element will link to its source code
   srcLinkBase: https://github.com/mmomtchev/node-gdal-async/blob/master/
-  # All CSS classes may be chganged from these defaults
+  # All CSS classes may be changed from these defaults
   classes:
     container: 'container d-flex flex-row',
     nav: 'position-sticky nav-section list',
