@@ -47,6 +47,10 @@ h7 {
     min-width: 40vw;
 }
 
+.btn-collapse {
+    width: 1rem;
+}
+
 [data-bs-toggle="collapse"].collapsed .if-not-collapsed {
     display: none;
 }
