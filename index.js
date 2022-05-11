@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const process = require('process');
 const File = require('vinyl');
 const vfs = require('vinyl-fs');
 const concat = require('concat-stream');
@@ -32,13 +33,21 @@ Handlebars.registerHelper('default', function (options) {
 });
 
 const crossLinks = {};
+let externalCrossLinks = () => undefined;
+
 Handlebars.registerHelper('crossLink', function (value) {
+    const ext = externalCrossLinks(value);
+    if (ext)
+        return `<a href="${ext}">${value}</a>`;
     if (crossLinks[value])
         return `<a href="#${crossLinks[value]}">${value}</a>`;
     return value;
 });
 
 Handlebars.registerHelper('crossLinkUrl', function (value) {
+    const ext = externalCrossLinks(value);
+    if (ext)
+        return ext;
     if (crossLinks[value])
         return '#' + crossLinks[value];
     return value;
@@ -80,6 +89,12 @@ function crossify(list, block) {
 
 
 module.exports = function (comments, config) {
+    const themeConfig = config['documentation-stylist'];
+    if (themeConfig) {
+        if (themeConfig.externalCrossLinks)
+            externalCrossLinks = require(path.resolve(process.cwd(), themeConfig.externalCrossLinks));
+    }
+
     comments.forEach(slugify);
 
     console.log(require('util').inspect(comments, false, Infinity, true));
@@ -95,6 +110,8 @@ module.exports = function (comments, config) {
     comments.forEach(crossify.bind(null, crossLinks));
 
     const generated = index({ config, comments });
+
+    console.log(config);
 
     const assets = [
         path.join(__dirname, 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'),

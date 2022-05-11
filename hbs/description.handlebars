@@ -15,7 +15,7 @@
         {{this.value}}
     {{/case}}
     {{#case 'inlineCode'}}
-        <code>{{this.value}}</code>
+        <code>{{{crossLink this.value}}}</code>
     {{/case}}
     {{#case 'link'}}
         <a href="{{crossLinkUrl this.url}}">
