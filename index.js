@@ -97,6 +97,8 @@ module.exports = function (comments, config) {
             fs.writeFileSync(themeConfig.dumpAST, JSON.stringify(comments));
     }
 
+    comments.forEach(slugify);
+
     // find static members whose unknown tags list contains propsfor
     const props = comments.filter((m) => (m.tags || []).map((t) => t.title).includes('propsfor'));
     // remove them from the normal flow
