@@ -1,5 +1,8 @@
 # documentation-stylist
 
+[![License: ISC](https://img.shields.io/github/license/mmomtchev/documentation-stylist)](https://github.com/mmomtchev/documentation-stylist/blob/main/LICENSE)
+[![Node.js CI](https://github.com/mmomtchev/documentation-stylist/actions/workflows/node.js.yml/badge.svg)](https://github.com/mmomtchev/documentation-stylist/actions/workflows/node.js.yml)
+
 `documentation-stylist` is a `react-styleguidist`-inspired theme for [documentation.js](https://documentation.js.org) with support for TypeScript and React components
 
 ![Style by Andre from NounProject.com](https://raw.githubusercontent.com/mmomtchev/documentation-stylist/main/stylist.svg)
@@ -11,12 +14,12 @@ You can check an example documentation that uses it here: [rlayers](https://mmom
 
 # Usage
 
-First:
+Install
 ```
 npm i --save-dev documentation-stylist
 ```
 
-Then:
+Run
 ```
 documentation build ... --theme=node_modules/documentation-stylist/index.js
 ```
@@ -24,6 +27,14 @@ documentation build ... --theme=node_modules/documentation-stylist/index.js
 # Using with React Components
 
 `documentation-stylist` supports the non-standard JSDoc tag `@propsfor` that allows to link the properties interface definition to the component.
+
+# Browse the Shops
+
+(...in their next versions...stay tuned ...)
+
+[rlayers](https://mmomtchev.github.io/rlayers/api) - React Component in TypeScript
+
+[gdal-async](https://mmomtchev.github.io/node-gdal-async) - Node.js addon in C++/JS with [documentation-polyglot](https://github.com/mmomtchev/documentation-polyglot)
 
 # Customization
 
