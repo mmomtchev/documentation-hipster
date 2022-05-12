@@ -1,5 +1,5 @@
 <div class="{{className 'navItem'}}">
-    <button class="btn btn-collapse m-0 me-2 p-0 align-items-center collapsed" {{#hasChildren this.members}}{{else}}style="visibility: hidden" {{/hasChildren}} data-bs-target="#{{this.slug}}-collapse"
+    <button class="{{className 'navCollapse'}} collapsed" {{#hasChildren this.members}}{{else}}style="visibility: hidden" {{/hasChildren}} data-bs-target="#{{this.slug}}-collapse"
         data-bs-toggle="collapse">
         <span class="font-monospace if-collapsed">+</span>
         <span class="font-monospace if-not-collapsed">-</span> </button>

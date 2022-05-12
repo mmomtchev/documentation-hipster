@@ -50,7 +50,7 @@ documentation-stylist:
     examples: 'ms-4',
     mainItem: 'me-1',
     navItem: 'd-flex flex-row align-items-center',
-    navCollapse: 'btn btn-collapse m-0 me-2 p-0 align-items-center collapsed',
+    navCollapse: 'btn btn-collapse m-0 me-2 p-0 align-items-center',
     navList: 'list-group',
     navListItem: 'list-group-item border-0',
     navLink: 'text-decoration-none',

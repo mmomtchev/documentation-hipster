@@ -1,0 +1,2 @@
+documentation-stylist:
+    extraCss: test/data/test.css

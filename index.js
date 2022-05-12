@@ -8,9 +8,9 @@ const map = require('map-stream');
 const slugger = new require('github-slugger')();
 const Handlebars = require('handlebars');
 
-const index = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'hbs', 'index.handlebars'), 'utf8'), {preventIndent: true});
+const index = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'hbs', 'index.handlebars'), 'utf8'), { preventIndent: true });
 for (const templ of fs.readdirSync(path.join(__dirname, 'hbs')).filter(f => f.match(/\.handlebars/))) {
-    const partial = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'hbs', templ), 'utf8'), {preventIndent: true});
+    const partial = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'hbs', templ), 'utf8'), { preventIndent: true });
     Handlebars.registerPartial(templ.split('.')[0], partial);
 }
 Handlebars.registerHelper('switch', function (value, options) {
@@ -49,7 +49,7 @@ const defaultClasses = {
     examples: 'ms-4',
     mainItem: 'me-1',
     navItem: 'd-flex flex-row align-items-center',
-    navCollapse: 'btn btn-collapse m-0 me-2 p-0 align-items-center collapsed',
+    navCollapse: 'btn btn-collapse m-0 me-2 p-0 align-items-center',
     navList: 'list-group',
     navListItem: 'list-group-item border-0',
     navLink: 'text-decoration-none',
@@ -141,16 +141,14 @@ function crossify(list, block) {
 
 
 module.exports = function documentationStylist(comments, config) {
-    const themeConfig = config['documentation-stylist'];
-    if (themeConfig) {
-        if (themeConfig.externalCrossLinks)
-            externalCrossLinks = require(path.resolve(process.cwd(), themeConfig.externalCrossLinks));
-        if (themeConfig.dumpAST)
-            fs.writeFileSync(themeConfig.dumpAST, JSON.stringify(comments));
-        crossLinksDupeWarning = themeConfig.crossLinksDupeWarning;
-        srcLinkBase = themeConfig.srcLinkBase;
-        userClasses = themeConfig.classes || {};
-    }
+    const themeConfig = config['documentation-stylist'] = config['documentation-stylist'] || {};
+    if (themeConfig.externalCrossLinks)
+        externalCrossLinks = require(path.resolve(process.cwd(), themeConfig.externalCrossLinks));
+    if (themeConfig.dumpAST)
+        fs.writeFileSync(themeConfig.dumpAST, JSON.stringify(comments));
+    crossLinksDupeWarning = themeConfig.crossLinksDupeWarning;
+    srcLinkBase = themeConfig.srcLinkBase;
+    userClasses = themeConfig.classes || {};
 
     comments.forEach(slugify);
 
@@ -164,11 +162,13 @@ module.exports = function documentationStylist(comments, config) {
     // create automatic cross-links
     comments.forEach(crossify.bind(null, crossLinks));
 
+    themeConfig.css = themeConfig.css ? path.join(process.cwd(), themeConfig.css) : path.join(__dirname, 'stylist.css')
     const assets = [
         require.resolve('bootstrap/dist/js/bootstrap.bundle.min.js'),
         require.resolve('bootstrap/dist/css/bootstrap.min.css'),
-        themeConfig.css ? path.join(process.cwd(), themeConfig.css) : path.join(__dirname, 'stylist.css')
+        themeConfig.css
     ];
+    themeConfig.css = path.basename(themeConfig.css);
     if (themeConfig.extraCss) {
         assets.push(path.join(process.cwd(), themeConfig.extraCss));
         themeConfig.extraCss = path.basename(themeConfig.extraCss);
