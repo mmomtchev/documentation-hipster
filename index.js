@@ -43,7 +43,7 @@ Handlebars.registerHelper('hasChildren', function (value, options) {
 
 const defaultClasses = {
     container: 'container d-flex flex-row',
-    nav: 'position-sticky nav-section list',
+    nav: 'position-sticky nav-section list px-2',
     main: 'main-section ps-3',
     title: 'mt-2 mb-3 me-2',
     examples: 'ms-4',
