@@ -8,7 +8,7 @@
     "url": "git+https://github.com/mmomtchev/react-stylist.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "eslint index.js && mocha"
   },
   "keywords": [
     "react",
@@ -34,6 +34,10 @@
   },
   "devDependencies": {
     "documentation": "^13.2.5",
+    "eslint": "^8.15.0",
+    "eslint-plugin-array-func": "^3.1.7",
+    "eslint-plugin-mocha": "^10.0.4",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
     "mocha": "^10.0.0"
   }
 }

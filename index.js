@@ -104,11 +104,9 @@ Handlebars.registerHelper('srcLink', function (value) {
     }
 });
 
-
-Handlebars.registerHelper('debug', function (value, options) {
+Handlebars.registerHelper('debug', function (value) {
     return JSON.stringify(value);
 });
-
 
 function slugify(block) {
     block.slug = slugger.slug(block.name);
