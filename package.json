@@ -18,6 +18,8 @@
     "react",
     "documentation",
     "documentation.js",
+    "theme",
+    "hipster",
     "jsdoc",
     "react-styleguidist"
   ],
