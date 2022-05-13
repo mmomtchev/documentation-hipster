@@ -49,4 +49,7 @@ describe('React Component with TypeScript', () => {
         perform('React-classes', `${tsxBuild} -c=${path.join(__dirname, 'React-classes.yml')} ${input}`);
     });
 
+    it('w/srcLinks', () => {
+        perform('React-srcLinks', `${tsxBuild} -c=${path.join(__dirname, 'React-srcLinks.yml')} ${input}`);
+    });
 });

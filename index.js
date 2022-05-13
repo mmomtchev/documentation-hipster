@@ -62,7 +62,7 @@ const defaultClasses = {
     paramsTypeData: '',
     paramsDescriptionData: '',
     returns: 'me-1',
-    source: 'ms-4 fs-6 fw-lighter'
+    source: 'ms-auto fs-6 fw-lighter'
 };
 let userClasses = {};
 function getClass(value) {
@@ -100,7 +100,7 @@ Handlebars.registerHelper('srcLink', function (value) {
     if (srcLinkBase && value) {
         const rel = path.relative(process.cwd(), value.file);
         const line = (value.loc && value.loc.start && value.loc.start.line !== undefined) ? '#L' + value.loc.start.line : '';
-        return `<a class="${getClass('source')}" href="${srcLinkBase}${rel}${line}">source</a>`;
+        return `<a class="${getClass('source')}" href="${srcLinkBase}${rel}${line}">${rel}</a>`;
     }
 });
 

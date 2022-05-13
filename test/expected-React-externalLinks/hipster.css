@@ -19,12 +19,20 @@ section h2 {
 section section h2 {
     font-size: 1.5rem;
     margin-top: 2rem;
+    display: flex;
+    align-items: center;
 }
 
 section section section h2 {
     font-size: 1.25rem;
     font-weight: 300;
     margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+section section a {
+    justify-self: end;
 }
 
 section section hr {

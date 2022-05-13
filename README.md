@@ -74,7 +74,7 @@ documentation-hipster:
     paramsTypeData: '',
     paramsDescriptionData: '',
     returns: 'me-1',
-    source: 'ms-4 fs-6 fw-lighter'
+    source: 'ms-auto fs-6 fw-lighter'
   # Completely replace the built-in CSS
   css: my.css
   # Add some classes to the built-in CSS
