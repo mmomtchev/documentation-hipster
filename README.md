@@ -1,32 +1,32 @@
-# documentation-stylist
+# documentation-hipster
 
-[![License: ISC](https://img.shields.io/github/license/mmomtchev/documentation-stylist)](https://github.com/mmomtchev/documentation-stylist/blob/main/LICENSE)
-[![Node.js CI](https://github.com/mmomtchev/documentation-stylist/actions/workflows/node.js.yml/badge.svg)](https://github.com/mmomtchev/documentation-stylist/actions/workflows/node.js.yml)
+[![License: ISC](https://img.shields.io/github/license/mmomtchev/documentation-hipster)](https://github.com/mmomtchev/documentation-hipster/blob/main/LICENSE)
+[![Node.js CI](https://github.com/mmomtchev/documentation-hipster/actions/workflows/node.js.yml/badge.svg)](https://github.com/mmomtchev/documentation-hipster/actions/workflows/node.js.yml)
 
-`documentation-stylist` is a `react-styleguidist`-inspired theme for [documentation.js](https://documentation.js.org) with support for TypeScript and React components
+`documentation-hipster` is a `react-styleguidist`-inspired theme for [documentation.js](https://documentation.js.org) with support for TypeScript and React components
 
-![Style by Andre from NounProject.com](https://raw.githubusercontent.com/mmomtchev/documentation-stylist/main/stylist.svg)
+![Style by Andre from NounProject.com](https://raw.githubusercontent.com/mmomtchev/documentation-hipster/main/hipster.svg)
 *Logo **Style by Andre** from NounProject.com*
 
 You can check an example documentation that uses it here: [rlayers](https://mmomtchev.github.io/rlayers/api)
 
-![rlayers API screenshot](https://raw.githubusercontent.com/mmomtchev/documentation-stylist/main/screenshot.png)
+![rlayers API screenshot](https://raw.githubusercontent.com/mmomtchev/documentation-hipster/main/screenshot.png)
 
 # Usage
 
 Install
 ```
-npm i --save-dev documentation-stylist
+npm i --save-dev documentation-hipster
 ```
 
 Run
 ```
-documentation build ... --theme=node_modules/documentation-stylist/index.js
+documentation build ... --theme=node_modules/documentation-hipster/index.js
 ```
 
 # Using with React Components
 
-`documentation-stylist` supports the non-standard JSDoc tag `@propsfor` that allows to link the properties interface definition to the component.
+`documentation-hipster` supports the non-standard JSDoc tag `@propsfor` that allows to link the properties interface definition to the component.
 
 # Browse the Shops
 
@@ -40,9 +40,9 @@ documentation build ... --theme=node_modules/documentation-stylist/index.js
 
 ## Configuration File
 
-`documentation-stylist` supports the following options in the `documentation.yml` configuration file:
+`documentation-hipster` supports the following options in the `documentation.yml` configuration file:
 ```yml
-documentation-stylist:
+documentation-hipster:
   # Disable the warning that multiple elements share the same base name
   # and cannot have their automatic cross links resolved
   crossLinksDupeWarning: false
@@ -83,4 +83,4 @@ documentation-stylist:
 
 ## Total Conversions
 
-`documentation-stylist` uses [Bootstrap](https://getbootstrap.com) and [Handlebars](https://handlebarsjs.com). Simply copy the `documentation-stylist` directory to your project and edit the templates in `./hbs`.
+`documentation-hipster` uses [Bootstrap](https://getbootstrap.com) and [Handlebars](https://handlebarsjs.com). Simply copy the `documentation-hipster` directory to your project and edit the templates in `./hbs`.

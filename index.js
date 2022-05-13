@@ -138,8 +138,8 @@ function crossify(list, block) {
 }
 
 
-module.exports = function documentationStylist(comments, config) {
-    const themeConfig = config['documentation-stylist'] = config['documentation-stylist'] || {};
+module.exports = function documentationHipster(comments, config) {
+    const themeConfig = config['documentation-hipster'] = config['documentation-hipster'] || {};
     if (themeConfig.externalCrossLinks)
         externalCrossLinks = require(path.resolve(process.cwd(), themeConfig.externalCrossLinks));
     if (themeConfig.dumpAST)
@@ -160,7 +160,7 @@ module.exports = function documentationStylist(comments, config) {
     // create automatic cross-links
     comments.forEach(crossify.bind(null, crossLinks));
 
-    themeConfig.css = themeConfig.css ? path.join(process.cwd(), themeConfig.css) : path.join(__dirname, 'stylist.css')
+    themeConfig.css = themeConfig.css ? path.join(process.cwd(), themeConfig.css) : path.join(__dirname, 'hipster.css')
     const assets = [
         require.resolve('bootstrap/dist/js/bootstrap.bundle.min.js'),
         require.resolve('bootstrap/dist/css/bootstrap.min.css'),

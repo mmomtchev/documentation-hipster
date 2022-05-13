@@ -1,11 +1,11 @@
 {
-  "name": "documentation-stylist",
+  "name": "documentation-hipster",
   "version": "0.1.0",
   "description": "documentation.js Bootstrap Theme with TypeScript and React support",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mmomtchev/react-stylist.git"
+    "url": "git+https://github.com/mmomtchev/documentation-hipster.git"
   },
   "scripts": {
     "test": "eslint index.js && mocha"
@@ -20,9 +20,9 @@
   "author": "Momtchil Momtchev <momtchil@momtchev.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mmomtchev/react-stylist/issues"
+    "url": "https://github.com/mmomtchev/documentation-hipster/issues"
   },
-  "homepage": "https://github.com/mmomtchev/react-stylist#readme",
+  "homepage": "https://github.com/mmomtchev/documentation-hipster#readme",
   "dependencies": {
     "bootstrap": "^5.1.3",
     "concat-stream": "^2.0.0",
