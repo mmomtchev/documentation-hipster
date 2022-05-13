@@ -35,10 +35,6 @@ section section a {
     justify-self: end;
 }
 
-section section hr {
-    display: none;
-}
-
 h7 {
     font-weight: 600;
 }
