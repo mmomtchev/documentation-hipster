@@ -1,2 +1,5 @@
+project-name: hipster
+project-version: forever-young
+
 documentation-hipster:
     css: test/data/test.css    

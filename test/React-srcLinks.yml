@@ -1,2 +1,5 @@
+project-name: hipster
+project-version: forever-young
+
 documentation-hipster:
-  srcLinkBase: https://github.com/mmomtchev/rlayers/blob/master/
+    srcLinkBase: https://github.com/mmomtchev/rlayers/blob/master/
