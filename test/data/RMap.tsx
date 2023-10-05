@@ -1,14 +1,3 @@
-import React, {PropsWithChildren} from 'react';
-import {Map, View, MapBrowserEvent, MapEvent} from 'ol';
-import RenderEvent from 'ol/render/Event';
-import BaseEvent from 'ol/events/Event';
-import {Extent} from 'ol/extent';
-
-import {Coordinate} from 'ol/coordinate';
-
-import {RContext} from './context';
-import {RlayersBase} from './REvent';
-
 /** Center and zoom level */
 export type RView = {
     /** Center of the map */
